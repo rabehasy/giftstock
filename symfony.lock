@@ -32,8 +32,14 @@
             "./.php-cs-fixer.dist.php"
         ]
     },
+    "pdepend/pdepend": {
+        "version": "2.10.0"
+    },
     "php-cs-fixer/diff": {
         "version": "v2.0.2"
+    },
+    "phpmd/phpmd": {
+        "version": "2.10.2"
     },
     "phpro/grumphp-shim": {
         "version": "v1.4.0"

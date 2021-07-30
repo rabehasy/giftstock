@@ -1,6 +1,7 @@
 grumphp:
     tasks:
-        phpcsfixer: null
+        phpcsfixer2:
+            config: '.php-cs-fixer.dist.php'
         phpstan:
             autoload_file: ~
             configuration: ~
@@ -10,6 +11,7 @@ grumphp:
             triggered_by: [ 'php' ]
             memory_limit: "-1"
             use_grumphp_paths: true
+        phpmd: ~
     ascii:
         failed: ~
         succeeded: ~
