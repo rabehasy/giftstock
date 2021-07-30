@@ -1,0 +1,18 @@
+parameters:
+  checkMissingIterableValueType: false
+  checkGenericClassInNonGenericObjectType: false
+  level: 6
+  paths:
+    - src
+    - tests
+  excludes_analyse:
+    - src/Kernel.php
+    - src/Maker/skeleton
+    - tests/bootstrap.php
+  ignoreErrors:
+    - '#Call to an undefined method Doctrine\\Persistence\\ObjectRepository[^::]+::[^\(]*\(\)#'
+    - '#Property [A-Za-z\\]+::\$[A-Za-z_]+ has no typehint specified#'
+    - '#Method [A-Za-z\\]+::buildForm\(\) has no return typehint specified#'
+    - '#Method [A-Za-z\\]+::configureOptions\(\) has no return typehint specified#'
+    - '#Argument of an invalid type [A-Za-z\\]+ supplied for foreach, only iterables are supported\.#'
+    - '#Unable to resolve the template type T in call to method [A-Za-z\\]+::getRepository\(\)#'
