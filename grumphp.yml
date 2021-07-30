@@ -10,8 +10,7 @@ grumphp:
             ignore_patterns: [ ]
             triggered_by: [ 'php' ]
             memory_limit: "-1"
-            use_grumphp_paths: true
-        phpmd: ~
+            use_grumphp_paths: true 
         phpunit: ~
     ascii:
         failed: ~
