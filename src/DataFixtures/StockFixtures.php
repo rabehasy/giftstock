@@ -34,7 +34,7 @@ class StockFixtures extends Fixture implements DependentFixtureInterface
             ],
             [
                 'gift' => 'hardware description',
-                'quantity' => 20,
+                'quantity' => 220,
             ],
             [
                 'gift' => 'hardware2 description',
