@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domain\Stock;
+namespace App\Infrastructure\Doctrine;
 
+use App\Domain\Stock\Stock;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

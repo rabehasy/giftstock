@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domain\Receiver;
+namespace App\Infrastructure\Doctrine;
 
+use App\Domain\Receiver\Receiver;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

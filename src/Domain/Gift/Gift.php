@@ -4,6 +4,7 @@ namespace App\Domain\Gift;
 
 use App\Domain\Receiver\Receiver;
 use App\Domain\Stock\Stock;
+use App\Infrastructure\Doctrine\GiftRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

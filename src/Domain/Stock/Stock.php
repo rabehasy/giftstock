@@ -3,6 +3,7 @@
 namespace App\Domain\Stock;
 
 use App\Domain\Gift\Gift;
+use App\Infrastructure\Doctrine\StockRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

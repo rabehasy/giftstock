@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domain\Gift;
+namespace App\Infrastructure\Doctrine;
 
+use App\Domain\Gift\Gift;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
