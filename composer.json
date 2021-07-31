@@ -21,6 +21,7 @@
         "symfony/yaml": "5.3.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "friendsofphp/php-cs-fixer": "^3.0",
         "phpro/grumphp-shim": "^1.4",
         "phpstan/phpstan": "^0.12.94",
@@ -62,7 +63,8 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "csf": "./vendor/bin/php-cs-fixer fix"
     },
     "conflict": {
         "symfony/symfony": "*"

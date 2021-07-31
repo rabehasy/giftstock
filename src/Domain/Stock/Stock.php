@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Domain\Stock;
 
-use App\Repository\StockRepository;
+use App\Domain\Gift\Gift;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Entity;
+namespace App\Domain\Gift;
 
-use App\Repository\GiftRepository;
+use App\Domain\Receiver\Receiver;
+use App\Domain\Stock\Stock;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Uid\Uuid;
 
 /**
@@ -15,8 +17,9 @@ class Gift
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class=UuidGenerator::class)
      */
     private $id;
 

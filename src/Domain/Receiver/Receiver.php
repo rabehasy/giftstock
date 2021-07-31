@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Entity;
+namespace App\Domain\Receiver;
 
-use App\Repository\ReceiverRepository;
+use App\Domain\Gift\Gift;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Uid\Uuid;
 
 /**
@@ -15,8 +16,9 @@ class Receiver
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class=UuidGenerator::class)
      */
     private $id;
 
@@ -42,6 +44,7 @@ class Receiver
 
     public function __construct()
     {
+        $this->id = Uuid::v4();
         $this->gifts = new ArrayCollection();
     }
 

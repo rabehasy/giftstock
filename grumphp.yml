@@ -2,6 +2,10 @@ grumphp:
     tasks:
         phpcsfixer2:
             config: '.php-cs-fixer.dist.php'
+            allow_risky: false
+            cache_file: ~
+            using_cache: true
+            verbose: true
         phpstan:
             autoload_file: ~
             configuration: ~

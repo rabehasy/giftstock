@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Repository;
+namespace App\Domain\Gift;
 
-use App\Entity\Gift;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,7 +19,7 @@ class GiftRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Gift[] Returns an array of Gift objects
+    //  * @return GiftFixtures[] Returns an array of GiftFixtures objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +36,7 @@ class GiftRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Gift
+    public function findOneBySomeField($value): ?GiftFixtures
     {
         return $this->createQueryBuilder('g')
             ->andWhere('g.exampleField = :val')
