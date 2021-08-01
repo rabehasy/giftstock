@@ -23,10 +23,11 @@ class GiftController extends AbstractController
     {
         $file = $request->files->get('filename');
         try {
+            // Upload file to tmp
             $filename = $uploadFile->upload($file);
 
-            // Messenger
-            $message = new UploadedGiftMessage($filename);
+            // Messenger - save batch
+            $message = new UploadedGiftMessage($filename, $this->getParameter('tmp_directory'));
             $messageBus->dispatch($message);
         } catch (Exception $exception) {
             return new JsonResponse($exception->getMessage());

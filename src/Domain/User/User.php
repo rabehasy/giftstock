@@ -2,12 +2,40 @@
 
 namespace App\Domain\User;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Infrastructure\Doctrine\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *     itemOperations={
+ *          "get"={
+ *              "method"="GET",
+ *              "normalization_context"={
+ *                   "groups"={
+ *                      "group:read"
+ *                   }
+ *               }
+ *           },
+ *          "put",
+ *          "delete"
+ *     },
+ *     collectionOperations=
+ *     {
+ *          "post",
+ *          "get"={
+ *              "method"="GET",
+ *              "normalization_context"={
+ *                   "groups"={
+ *                      "group:read"
+ *                   }
+ *               }
+ *           },
+ *      }
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -16,11 +44,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"group:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"group:read"})
      */
     private $email;
 

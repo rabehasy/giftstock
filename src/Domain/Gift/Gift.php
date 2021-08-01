@@ -2,6 +2,10 @@
 
 namespace App\Domain\Gift;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Domain\Receiver\Receiver;
 use App\Domain\Stock\Stock;
 use App\Infrastructure\Doctrine\GiftRepository;
@@ -9,9 +13,51 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 
 /**
+ * @ApiResource(
+ *     itemOperations={
+ *          "get"={
+ *              "method"="GET",
+ *              "normalization_context"={
+ *                   "groups"={
+ *                      "group:read"
+ *                   }
+ *               }
+ *           },
+ *          "put",
+ *          "delete"
+ *     },
+ *     collectionOperations=
+ *     {
+ *          "post",
+ *          "get"={
+ *              "method"="GET",
+ *              "normalization_context"={
+ *                   "groups"={
+ *                      "group:read"
+ *                   }
+ *               }
+ *           },
+ *      }
+ * )
+ * @ApiFilter(
+ *     OrderFilter::class,
+ *     properties={
+ *         "code"
+ *     },
+ *     arguments={"orderParameterName"="order"}
+ * )
+ * @ApiFilter(
+ *     SearchFilter::class,
+ *     properties={
+ *          "description": "ipartial",
+ *          "code": "exact",
+ *          "price": "exact"
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=GiftRepository::class)
  */
 class Gift
@@ -21,21 +67,25 @@ class Gift
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class=UuidGenerator::class)
+     * @Groups({"group:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Groups({"group:read"})
      */
     private $code;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"group:read"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"group:read"})
      */
     private $price;
 
@@ -46,6 +96,7 @@ class Gift
 
     /**
      * @ORM\ManyToMany(targetEntity=Receiver::class, inversedBy="gifts")
+     * @Groups({"group:read"})
      */
     private $receiver;
 

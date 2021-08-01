@@ -2,15 +2,53 @@
 
 namespace App\Domain\Receiver;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Domain\Gift\Gift;
 use App\Infrastructure\Doctrine\ReceiverRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 
 /**
+ * @ApiResource(
+ *     itemOperations={
+ *          "get"={
+ *              "method"="GET",
+ *              "normalization_context"={
+ *                   "groups"={
+ *                      "group:read"
+ *                   }
+ *               }
+ *           },
+ *          "put",
+ *          "delete"
+ *     },
+ *     collectionOperations=
+ *     {
+ *          "post",
+ *          "get"={
+ *              "method"="GET",
+ *              "normalization_context"={
+ *                   "groups"={
+ *                      "group:read"
+ *                   }
+ *               }
+ *           },
+ *      }
+ * )
+ * @ApiFilter(
+ *     SearchFilter::class,
+ *     properties={
+ *          "firstName": "ipartial",
+ *          "lastName": "ipartial",
+ *          "countryCode": "exact"
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=ReceiverRepository::class)
  */
 class Receiver
@@ -20,21 +58,25 @@ class Receiver
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class=UuidGenerator::class)
+     * @Groups({"group:read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"group:read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"group:read"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=2)
+     * @Groups({"group:read"})
      */
     private $countryCode;
 

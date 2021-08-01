@@ -2,11 +2,39 @@
 
 namespace App\Domain\Stock;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Domain\Gift\Gift;
 use App\Infrastructure\Doctrine\StockRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *     itemOperations={
+ *          "get"={
+ *              "method"="GET",
+ *              "normalization_context"={
+ *                   "groups"={
+ *                      "group:read"
+ *                   }
+ *               }
+ *           },
+ *          "put",
+ *          "delete"
+ *     },
+ *     collectionOperations=
+ *     {
+ *          "post",
+ *          "get"={
+ *              "method"="GET",
+ *              "normalization_context"={
+ *                   "groups"={
+ *                      "group:read"
+ *                   }
+ *               }
+ *           },
+ *      }
+ * )
  * @ORM\Entity(repositoryClass=StockRepository::class)
  */
 class Stock
@@ -20,11 +48,13 @@ class Stock
 
     /**
      * @ORM\ManyToOne(targetEntity=Gift::class, inversedBy="stocks")
+     * @Groups({"group:read"})
      */
     private $gift;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"group:read"})
      */
     private $quantity;
 

@@ -14,7 +14,7 @@ class CreateGiftHandler
         $this->giftRepository = $giftRepository;
     }
 
-    public function handle(array $item): void
+    public function handle(array $item): Gift
     {
         $gift = new Gift();
         $gift->setCode($item['code']);
@@ -26,5 +26,7 @@ class CreateGiftHandler
         } catch (\Exception $exception) {
             throw new \Exception('unable to save gift '.$exception->getMessage());
         }
+
+        return $gift;
     }
 }
