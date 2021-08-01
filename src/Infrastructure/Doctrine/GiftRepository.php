@@ -3,11 +3,10 @@
 namespace App\Infrastructure\Doctrine;
 
 use App\Domain\Gift\Gift;
-use App\Domain\Gift\GiftRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class GiftRepository extends ServiceEntityRepository implements GiftRepositoryInterface
+class GiftRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
