@@ -27,12 +27,12 @@ class CreateUserHandler
     {
         $user = new User();
         $user->setEmail($item['email']);
-        $password = $this->hasher->hashPassword($user, $item['password']);
+        $user->setPassword($this->hasher->hashPassword($user, $item['password']));
 
         try {
             $this->userRepository->save($user);
         } catch (\Exception $exception) {
-            throw new \Exception('unable to save user '.$item['email']);
+            throw new \Exception('unable to save user '.$item['email'].' - '.$exception->getMessage());
         }
     }
 }

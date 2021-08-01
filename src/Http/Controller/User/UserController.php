@@ -3,10 +3,15 @@
 namespace App\Http\Controller\User;
 
 use App\Application\CreateUserHandler;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
-class UserController
+/**
+ * @Route("/api/users")
+ */
+class UserController extends AbstractController
 {
     /**
      * @var CreateUserHandler
@@ -18,13 +23,16 @@ class UserController
         $this->handler = $handler;
     }
 
-    public function index(Request $request): JsonResponse
+    /**
+     * @Route("/", name="api_user_create", methods={"POST"})
+     */
+    public function create(Request $request): JsonResponse
     {
         $user = json_decode($request->getContent(), true);
 
         try {
             $this->handler->handle([
-                'username' => $user['username'],
+                'email' => $user['email'],
                 'password' => $user['password'],
             ]);
         } catch (\Exception $exception) {
