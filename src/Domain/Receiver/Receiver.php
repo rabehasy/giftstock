@@ -158,4 +158,17 @@ class Receiver
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getNames();
+    }
+
+    public function getNames(): ?string
+    {
+        $firstName = '' !== \trim($this->firstName) ? $this->firstName : '';
+        $lastName = '' !== \trim($this->lastName) ? ('' !== $firstName ? ' ' : '').$this->lastName : '';
+
+        return $firstName.$lastName;
+    }
 }

@@ -8,3 +8,9 @@ up:
 schema-update:
 	docker exec -it giftstock /home/giftstock/bin/console doctrine:database:create --if-not-exists
 	docker exec -it giftstock /home/giftstock/bin/console doctrine:schema:update --force
+
+schema-update-test:
+	docker exec -it giftstock /home/giftstock/bin/console doctrine:database:drop --force --env=test
+	docker exec -it giftstock /home/giftstock/bin/console doctrine:database:create --env=test
+	docker exec -it giftstock /home/giftstock/bin/console doctrine:schema:update --env=test
+	docker exec -it giftstock /home/giftstock/bin/console doctrine:fixtures:load -n --env=test

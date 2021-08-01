@@ -86,4 +86,9 @@ class Stock
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return '';
+    }
 }
