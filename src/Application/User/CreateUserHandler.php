@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application;
+namespace App\Application\User;
 
 use App\Domain\User\User;
 use App\Domain\User\UserRepositoryInterface;
@@ -8,14 +8,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class CreateUserHandler
 {
-    /**
-     * @var UserRepositoryInterface
-     */
-    private $userRepository;
-    /**
-     * @var UserPasswordHasherInterface
-     */
-    private $hasher;
+    private UserRepositoryInterface $userRepository;
+
+    private UserPasswordHasherInterface $hasher;
 
     public function __construct(UserRepositoryInterface $userRepository, UserPasswordHasherInterface $hasher)
     {
